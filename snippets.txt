@@ -1,0 +1,26 @@
+<div id="tabs-infor" class="">  
+          {% assign words_tabs =  product.description | split: '<h5>' %}
+            {% assign count_tab = 0 %}
+            <ul class="tabs">
+              {% for words_tab in words_tabs %}
+              {% assign count_tab = count_tab | plus: 1 %}
+              {% if count_tab == 1 %} {% continue %} {% endif %}
+              <li class="icon-toggle tab-link {% if  count_tab == 2 %} current {% endif %}" data-tab="tab-{{count_tab}}" >
+                {{words_tab | split: '</h5>' | first }}
+              </li>
+            {% endfor %}
+          </ul>
+          <div class="tabs-details">
+            {% assign count_tab2 = 0 %}
+              {% for words_tab in words_tabs %}
+              {% assign count_tab2 = count_tab2 | plus: 1 %}
+              {% if count_tab2 == 1 %} {% continue %} {% endif %}
+            <div id="tab-{{count_tab2}}" class="tab_content {% if  count_tab2 == 2 %} current {% endif %}" >
+              <div class="contant_div">
+              {% assign tabcontent = words_tab | split: '</h5>' | last %}
+              {{tabcontent}}
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
